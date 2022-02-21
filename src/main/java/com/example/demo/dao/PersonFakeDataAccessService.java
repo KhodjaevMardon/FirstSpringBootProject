@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository("fakeDao")
 public class PersonFakeDataAccessService implements PersonDAO {
 
-    private static List<Person> DB = new ArrayList<>();
+    private static final List<Person> DB = new ArrayList<>();
 
     @Override
     public int insertPerson(UUID id, Person person) {
@@ -42,7 +42,7 @@ public class PersonFakeDataAccessService implements PersonDAO {
     @Override
     public int updatePersonById(UUID id, Person person) {
         return selectPersonById(id).map(person1 -> {
-            int indexOfPersonToUpdate = DB.indexOf(person);
+            int indexOfPersonToUpdate = DB.indexOf(person1);
             if (indexOfPersonToUpdate >= 0) {
                 DB.set(indexOfPersonToUpdate, person);
                 return 1;
